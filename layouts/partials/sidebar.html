@@ -2,7 +2,7 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about" align="center">
       <a href="{{ .Site.BaseURL }}"><h1 class="brand">{{ .Site.Title }}</h1></a>
-      {{with .Site.Params.mainImage}}<img src="{{.}}" width=100% />{{end}}
+      {{with .Site.Params.mainImage}}<img src="{{.}}" width=75% />{{end}}
       <p class="lead">
       {{ with .Site.Params.description }} {{.}} {{ else }}An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.{{end}}
       </p>
@@ -15,6 +15,7 @@
         {{ range .Site.Menus.main -}}
           <li><a href="{{.URL}}"> {{ .Name }} </a></li>
         {{- end }}
+        <br/>
         {{ partial "hook_sidebar_items.html" . }}
         <br/>
 
