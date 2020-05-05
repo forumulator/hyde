@@ -15,12 +15,18 @@
         {{ range .Site.Menus.main -}}
           <li><a href="{{.URL}}"> {{ .Name }} </a></li>
         {{- end }}
+        {{ partial "hook_sidebar_items.html" . }}
         <br/>
+
+        {{/* Special code section rendering.*/}}
         {{with .Site.Pages.ByTitle -}}
-        <li>Code:</li>
-          {{ range . -}}
-            {{if and (ne .Kind "section") (eq .Type "code") -}}
-            <li><a href="{{.URL}}">{{ .Name }} </a></li>
+          {{ $codePages := where (where . "Kind" "section") "Type" "code" }}
+          {{ with $codePages -}}
+            <li>Code:</li>
+            {{ range . -}}
+              {{if and (ne .Kind "section") (eq .Type "code") -}}
+              <li><a href="{{.URL}}">{{ .Name }} </a></li>
+              {{- end }}
             {{- end }}
           {{- end }}
         {{- end }}
