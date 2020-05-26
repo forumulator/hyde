@@ -1,12 +1,18 @@
 {{ partial "head.html" . }}
   <body class="{{ .Site.Params.themeColor }} {{if .Site.Params.layoutReverse}}layout-reverse{{end}}">
-  {{ partial "sidebar.html" . }}
+  	{{ partial "sidebar.html" . }}
     <main class="content container">
     {{ block "main" . -}}{{- end }}
     </main>
 
-    {{ if not .Site.IsServer }}
-      {{ template "_internal/google_analytics_async.html" . }}
-    {{ end }}
+    {{ if .HasShortcode "mermaid" -}}
+    <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        mermaid.initialize({
+            startOnLoad: true,
+            fontFamily: "fira sans, sans-serif"
+        });
+    </script>
+    {{- end }}
   </body>
 </html>
