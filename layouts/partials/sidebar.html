@@ -1,8 +1,25 @@
-<aside class="sidebar">
+<aside class="navbar navbar-mobile">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <span class="mainimage">
+        <img src="{{.Site.Params.mainImage}}">
+      </span>
+
+      <a href="{{ .Site.BaseURL }}">
+        <h1 class="brand">{{ .Site.Title }}</h1>
+      </a>
+    </div>
+
+    <nav class="mobile-nav">
+      <a class="fa fa-bars"></a>
+    </nav>
+  </div>
+</aside>
+<aside class="navbar sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about" align="center">
       <a href="{{ .Site.BaseURL }}"><h1 class="brand">{{ .Site.Title }}</h1></a>
-      {{with .Site.Params.mainImage}}<img src="{{.}}" width=75% />{{end}}
+      {{with .Site.Params.mainImage}}<img src="{{.}}" />{{end}}
       <p class="lead">
       {{ with .Site.Params.description }} {{.}} {{ else }}An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.{{end}}
       </p>
@@ -45,3 +62,17 @@
 
   </div>
 </aside>
+
+<script>
+if (window.getComputedStyle(document.querySelector(".navbar-mobile")).display != "none") {
+  document.querySelector(".sidebar").style.display = "none";
+}
+document.querySelector(".mobile-nav a").onclick = function() {
+    var sidebar = document.querySelector(".sidebar");
+    if (sidebar.style.display == "none") {
+      sidebar.style.display = "block";
+    } else {
+      sidebar.style.display = "none";
+    }
+  }
+</script>
